@@ -31,7 +31,7 @@ def turnOffRightmostBit(x):
 # isolates the rightmost set bit    
 def isolateRightmostSetBit(x):
 
-    return x & (-x)
+    return x & ~(x - 1)
    
  
 # Tests for these functions
