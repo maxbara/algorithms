@@ -32,7 +32,19 @@ def turnOffRightmostBit(x):
 def isolateRightmostSetBit(x):
 
     return x & ~(x - 1)
-   
+
+# adds 1
+def addOne(x: int):
+    
+    k = 1   
+    # flip all set bits to zero until finding a zero to flip
+    while x & k:       
+        x ^= k      
+        k <<= 1
+    
+    # flip the rightmost 0 bit to zero
+    x ^= k    
+    return x
  
 # Tests for these functions
 print()
@@ -64,3 +76,7 @@ print(bin(turnOffRightmostBit(40)))
 
 print()
 print(isolateRightmostSetBit(40))
+
+print(addOne(7))
+print(addOne(8))
+print(addOne(12))
