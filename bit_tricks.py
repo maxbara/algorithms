@@ -46,6 +46,59 @@ def addOne(x: int):
     x ^= k    
     return x
  
+# multiples a times b using bitwise and addition operators
+def russianPeasantMultiplication(a, b):
+    
+    res = 0
+    
+    while b > 0:
+        
+        if b & 1:
+            
+            res += a
+          
+        a <<= 1
+        b >>=  1
+    
+    return res
+
+# adds bit strings together, and returns a bit string with the total
+def addBitStrings( first, second ): 
+    
+    # Helper method: makes length of bit strings equal
+    def makeEqualLength(str1, str2): 
+  
+        len1 = len(str1)
+        len2 = len(str2)
+        if len1 < len2: 
+            str1 = (len2 - len1) * '0' + str1 
+            len1 = len2 
+        elif len2 < len1: 
+            str2 = (len1 - len2) * '0' + str2 
+            len2 = len1 
+        return len1, str1, str2 
+    
+    result = ''
+  
+    length, first, second = makeEqualLength(first, second) 
+  
+    carry = 0
+    for i in range(length - 1, -1, -1): 
+        firstBit = int(first[i]) 
+        secondBit = int(second[i]) 
+  
+        # is bit 1 or 0, among 3 bits
+        sum = (firstBit ^ secondBit ^ carry) + 48
+        result = chr(sum) + result 
+  
+        # do we need a carry?
+        carry = (firstBit & secondBit) |  (secondBit & carry) | (firstBit & carry) 
+  
+    # overflow
+    if carry == 1: 
+        result = '1' + result 
+    return result
+
 # Tests for these functions
 print()
 print(bin(40))
@@ -80,3 +133,9 @@ print(isolateRightmostSetBit(40))
 print(addOne(7))
 print(addOne(8))
 print(addOne(12))
+
+print(russianPeasantMultiplication(3, 9))
+
+str1 = '1100101'
+str2 = '1011'
+print('Sum is', addBitStrings(str1, str2)) 
