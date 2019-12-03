@@ -99,6 +99,12 @@ def addBitStrings( first, second ):
         result = '1' + result 
     return result
 
+# xor operation without xor
+def xorOperation(a: int, b: int)-> int:
+    
+    return (a | b) & (~a | ~b)
+
+
 # Tests for these functions
 print()
 print(bin(40))
@@ -139,3 +145,5 @@ print(russianPeasantMultiplication(3, 9))
 str1 = '1100101'
 str2 = '1011'
 print('Sum is', addBitStrings(str1, str2)) 
+
+print(xorOperation(10, 7))
